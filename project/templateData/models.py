@@ -1,15 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from profileApp.models import Users
 
 
-class Users(models.Model):
-    UID = models.CharField(max_length=10,primary_key=True)
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    email = models.EmailField(max_length=254)
-    profile_img = models.ImageField(upload_to="../profileImages/", height_field=None, width_field=None, max_length=None)
-    def __str__(self):
-        return self.UID + " " + self.username
+# class Users(AbstractUser):
+#     profile_img = models.ImageField(upload_to="../profileImages/", height_field=None, width_field=None, max_length=None)
+#     def __str__(self):
+#         return self.id + " " + self.username
 
 
 class Template(models.Model):
@@ -33,7 +30,7 @@ class AppLogs(models.Model):
         ("new", "new"),
         ("default", "default"),
     )
-    transaction_type = models.CharField(max_length=10,choices=CHOICES,default="def",blank=True)
+    transaction_type = models.CharField(max_length=10,choices=CHOICES,default="default",blank=True)
     TID = models.ForeignKey(Template, on_delete=models.CASCADE)
     UID = models.ForeignKey(Users, on_delete=models.CASCADE)
     def __str__(self):
