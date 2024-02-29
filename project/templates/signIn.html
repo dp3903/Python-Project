@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        :root{
+        :root {
             --rotation: 135deg;
         }
-        body{
+
+        body {
             /* background-image: url("https://wallpapers.com/images/hd/purple-gradient-background-5472-x-3648-i2xtxsy5ijm2ik4e.jpg"); */
             /* background-image: linear-gradient(90deg,violet,darkblue); */
             /* background: rgb(7,0,16); */
             background: #101010;
-/* background: linear-gradient(135deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%); */
+            /* background: linear-gradient(135deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%); */
             background-repeat: no-repeat;
             background-size: cover;
             height: 100vh;
             /* overflow-y: hidden; */
         }
-        .container{
+
+        .container {
             float: none;
             width: 30%;
             /* height: 520px; */
@@ -38,7 +41,8 @@
             border-radius: 10px;
             /* box-shadow: 0px 0px 10px grey; */
         }
-        .container::before{
+
+        .container::before {
             content: "Hi";
             position: absolute;
             display: block;
@@ -47,88 +51,102 @@
             width: 100%;
             height: 100%;
             /* max-height: 400px; */
-            background: linear-gradient(var(--rotation), rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
+            background: linear-gradient(var(--rotation), rgba(7, 0, 36, 1) 0%, rgba(63, 9, 121, 1) 26%, rgba(255, 0, 164, 1) 100%);
             z-index: -1;
             filter: blur(5px) saturate(250%);
         }
-        button{
+
+        button {
             /* margin-left: 140px; */
             margin-top: 50px;
             width: 100%;
         }
-        h1{
+
+        h1 {
             font-weight: 600;
             text-align: center;
             margin-top: 20px;
             margin-bottom: 40px;
             padding: 10px;
             text-decoration: underline;
-            background-image: linear-gradient(var(--rotation), rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
+            background-image: linear-gradient(var(--rotation), rgba(7, 0, 36, 1) 0%, rgba(63, 9, 121, 1) 26%, rgba(255, 0, 164, 1) 100%);
             background-size: 100%;
             -webkit-background-clip: text;
             -moz-background-clip: text;
-            -webkit-text-fill-color: transparent; 
+            -webkit-text-fill-color: transparent;
             -moz-text-fill-color: transparent;
         }
-        form{
+
+        form {
             text-align: center;
-            background-color: rgba(255,0,164,1);
-            background-image: linear-gradient(270deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
+            background-color: rgba(255, 0, 164, 1);
+            background-image: linear-gradient(270deg, rgba(7, 0, 36, 1) 0%, rgba(63, 9, 121, 1) 26%, rgba(255, 0, 164, 1) 100%);
             background-size: 100%;
             -webkit-background-clip: text;
             -moz-background-clip: text;
-            -webkit-text-fill-color: transparent; 
+            -webkit-text-fill-color: transparent;
             -moz-text-fill-color: transparent;
         }
-        input{
-            background-color: transparent!important;
-            border-color: #303030!important;
-            border-radius: 20px!important;
+
+        input {
+            background-color: transparent !important;
+            border-color: #303030 !important;
+            border-radius: 20px !important;
         }
-        input:hover{
+
+        input:hover {
             /* background-color: #292929!important; */
             -webkit-text-fill-color: white;
-            color: white!important;
-            background-image: linear-gradient(135deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
-            border-color: aliceblue!important;
-            border-radius: 20px!important;
+            color: white !important;
+            background-image: linear-gradient(135deg, rgba(7, 0, 36, 1) 0%, rgba(63, 9, 121, 1) 26%, rgba(255, 0, 164, 1) 100%);
+            border-color: aliceblue !important;
+            border-radius: 20px !important;
         }
-        input:focus{
+
+        input:focus {
             -webkit-text-fill-color: white;
-            color: white!important;
-            background-image: linear-gradient(135deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
+            color: white !important;
+            background-image: linear-gradient(135deg, rgba(7, 0, 36, 1) 0%, rgba(63, 9, 121, 1) 26%, rgba(255, 0, 164, 1) 100%);
             /* border-color: aliceblue!important; */
         }
-        ::placeholder{
+
+        ::placeholder {
             background-color: grey;
             -webkit-background-clip: text;
             /* -webkit-text-fill-color: black; */
             /* text-decoration: none; */
             /* -webkit-text-fill-color: rgba(218,122,214,1); */
         }
-        input:hover::placeholder{
-            -webkit-text-fill-color: rgba(255,255,255,0.3);
+
+        input:hover::placeholder {
+            -webkit-text-fill-color: rgba(255, 255, 255, 0.3);
             /* color: #505050!important; */
         }
-        input:focus::placeholder{
-            -webkit-text-fill-color: rgba(255,255,255,0.3);
+
+        input:focus::placeholder {
+            -webkit-text-fill-color: rgba(255, 255, 255, 0.3);
             /* color: #505050!important; */
         }
-        a{
-            text-decoration: underline rgba(255,0,164,0.3) 1px;
+
+        a {
+            text-decoration: underline rgba(255, 0, 164, 0.3) 1px;
         }
-        a:link{
+
+        a:link {
             color: #202020;
         }
-        a:visited{
+
+        a:visited {
             color: #202020;
         }
-        #sign-in:hover{
+
+        #sign-in:hover {
             -webkit-text-fill-color: white;
             border: solid 1px white;
-            background-image: linear-gradient(135deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
+            background-image: linear-gradient(135deg, rgba(7, 0, 36, 1) 0%, rgba(63, 9, 121, 1) 26%, rgba(255, 0, 164, 1) 100%);
         }
-        #site-title{
+
+        #site-title {
             /* text-decoration: underline white 1px; */
             position: absolute;
             border-bottom: solid 1px #404040;
@@ -136,18 +154,20 @@
             left: 10%;
             /* text-align: center; */
         }
-        #invalid{
+
+        #invalid {
             text-align: center;
-            background-color: rgba(255,0,164,1);
-            background-image: linear-gradient(270deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
+            background-color: rgba(255, 0, 164, 1);
+            background-image: linear-gradient(270deg, rgba(7, 0, 36, 1) 0%, rgba(63, 9, 121, 1) 26%, rgba(255, 0, 164, 1) 100%);
             background-size: 100%;
             -webkit-background-clip: text;
             -moz-background-clip: text;
-            -webkit-text-fill-color: transparent; 
+            -webkit-text-fill-color: transparent;
             -moz-text-fill-color: transparent;
         }
+
         @media only screen and (max-width: 1000px) {
-            .container{
+            .container {
                 width: 80%;
                 left: 10%;
             }
@@ -162,36 +182,41 @@
             {% csrf_token %}
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label"><strong>Username</strong></label>
-                <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+                <input type="text" class="form-control" name="username" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Username">
                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label"><strong>Password</strong></label>
-                <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="exampleInputPassword1"
+                    placeholder="Password">
             </div>
             <div class="mb-3">
                 <a href="#">Forgot Password?</a>
             </div>
             <button type="submit" class="btn btn-outline-dark" id="sign-in">Sign In</button>
             <div class="mb-3">
-                No Account? 
-                <a href="#">Sign up</a>
+                No Account?
+                <a href="/signUp">Sign up</a>
             </div>
         </form>
         {% if status == False %}
         <h2 id="invalid">Incorrect username or pasword</h2>
         {% endif %}
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script>
-         let i = 135;
-        setInterval(()=>{
+        let i = 135;
+        setInterval(() => {
             const root = document.querySelector(":root");
-            root.style.setProperty("--rotation", i+'deg');
+            root.style.setProperty("--rotation", i + 'deg');
             i++;
             i %= 360;
-        },50)
+        }, 50)
     </script>
 </body>
+
 </html>
