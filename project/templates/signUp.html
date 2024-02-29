@@ -46,6 +46,7 @@
         .image_container img{
             padding: 5px;
             height: 25vh;
+            aspect-ratio: 1 / 1;
             border: 2px solid #42EADDFF;
             border-radius: 50%;
         }
@@ -75,12 +76,13 @@
 
         .data label{
             font-size: larger;
-            color: hwb(54 55% 0%);
+            {% comment %} color: hwb(54 55% 0%); {% endcomment %}
+            color: violet;
         }
 
         .data input{
             border: 3px solid #42EADDFF;
-            border-radius: 0px;
+            border-radius: 5px;
             font-weight: 500;
         }
 
@@ -110,6 +112,30 @@
         input[type=reset]:hover{
             background-color: rgb(205, 136, 136);
         }
+
+        .message{
+            text-align: center;
+            color: Red;
+        }
+
+        #image_input{
+            color: white;
+        }
+
+        .help{
+            color:purple;
+            {% comment %} text-decoration: underline; {% endcomment %}
+            {% comment %} opacity: 1; {% endcomment %}
+        }
+
+        @media only screen and (max-width: 1100px) {
+            .container {
+                position: absolute;
+                width: 80%;
+                left: 10%;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -119,35 +145,43 @@
         <form method="post" action="{% url 'signUp' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="image_container">
-                <img src="{% static 'profile.jpg' %}" alt="Image">
-                <input type="file" name="profile_img" accept="image/*">
+                <img id="profile_img" src="{% static 'profile.jpg' %}" value="This is profile img" alt="Image">
+                <input type="file" id="image_input" name="profile_img" accept="image/*">
             </div>
 
             <div class="data">
                 <label for="username" ><b>Name : </b></label><br>
-                <input type="text" name="username" placeholder="Enter Your Name" value="{{username}}">
+                <input type="text" id="username" name="username" placeholder="Enter Your Name" value="{{username}}">
             </div>
 
             <div class="data">
                 <label for="email" ><b>Email : </b></label><br>
-                <input type="email" name="email" placeholder="Enter Your E-mail Address" value="{{email}}">
+                <input type="email" id="email" name="email" placeholder="Enter Your E-mail Address" value="{{email}}">
             </div>
 
             <div class="data">
                 <label for="password1"><b>Password : </b></label><br>
-                <input type="password" name="password1" placeholder="Enter Password">
+                <input type="password" id="password1" name="password1" placeholder="Enter Password">
+                <span class="help">pasword must be atleast 9 characters long</span>
             </div>
 
             <div class="data">
                 <label for="password2"><b>Confirm Password : </b></label><br>
-                <input type="password" name="password2" placeholder="Enter Confirm Password">
+                <input type="password" id="password2" name="password2" placeholder="Enter Confirm Password">
+                <span class="help">make sure password matches confirm password.</span>
             </div>
         
             <div class="submit_reset">
                 <input type="reset" name="reset" value="Reset" style="width: 50%;">    
                 <input type="submit" name="submit" value="Create Profile" style="width: 50%;">
             </div>
+            {% if status %}
+                <h4 class="message">{{ status }}</h4>
+            {% endif %}
         </form>
     </div>
+    <script src="{% static 'signUp.js' %}">
+        
+    </script>
 </body>
 </html>

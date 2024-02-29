@@ -4,6 +4,8 @@ from .forms import CustomUserCreationForm, LoginForm
 
 def signUp(request):
     if request.method == 'POST':
+        print(request.POST)
+        print(request.FILES)
         form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -17,12 +19,12 @@ def signUp(request):
                 return redirect('home')  # Redirect to the home page or another page after successful registration
             else:
                 form = CustomUserCreationForm()
-                return render(request, 'signUp.html', {'username': username, 'email': email})
+                return render(request, 'signUp.html', {'username': username, 'email': email, 'status': 'Confirm password does not match the password.'})
         else:
-            return render(request, 'signUp.html', {'form': form})  # Pass form to template if form is invalid
+            return render(request, 'signUp.html', {'status': 'Invalid data, Please try again.'})  # Pass form to template if form is invalid
     else:
         form = CustomUserCreationForm()
-    return render(request, 'signUp.html', {'form': form})  # Pass form to template for initial rendering
+    return render(request, 'signUp.html')  # Pass form to template for initial rendering
 
 
 def signIn(request):
@@ -49,6 +51,6 @@ def home(request):
         return redirect('signIn')
 
 
-def logout(request):
+def log_out(request):
     logout(request)
     return redirect('signIn')
