@@ -1,4 +1,4 @@
-console.log("hello");
+// console.log("hello");
         const imageInput = document.getElementById('image_input');
         const previewImage = document.getElementById('profile_img');
         function previewSelectedImage() {

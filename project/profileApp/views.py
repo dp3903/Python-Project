@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate,logout
 from .forms import CustomUserCreationForm, LoginForm
+from .models import Users
 
 def signUp(request):
     if request.method == 'POST':
@@ -46,7 +47,22 @@ def signIn(request):
 
 def home(request):
     if request.user.is_authenticated:
-        return render(request, 'home.html')
+        profileImg = Users.objects.filter(username = request.user.username).values_list('profile_img')
+        # print(profileImg[0][0])
+        # print(type(profileImg[0][0]))
+        # print(profileImg[0][0] == '')
+        context = {}
+        if(profileImg[0][0] == ''):
+            context = {
+                'profile' : 'profile.jpg'
+            }
+        else:
+            context = {
+                'profile' : profileImg[0][0][7:]
+            }
+        print(context)
+
+        return render(request, 'home.html', context)
     else:
         return redirect('signIn')
 
@@ -54,3 +70,38 @@ def home(request):
 def log_out(request):
     logout(request)
     return redirect('signIn')
+
+
+def profile(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            profileImg = Users.objects.filter(username = request.user.username).values_list('profile_img')
+            # print(profileImg[0][0])
+            # print(type(profileImg[0][0]))
+            # print(profileImg[0][0] == '')
+            context = {}
+            if(profileImg[0][0] == ''):
+                context = {
+                    'profile' : 'profile.jpg'
+                }
+            else:
+                context = {
+                    'profile' : profileImg[0][0][7:]
+                }
+            print(context)
+            return render(request, 'profile.html', context)
+        else:
+            return redirect('signIn')
+    else:
+        return redirect('signIn')
+
+def upload(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            print('uploading template')
+            # upload logic
+        else:
+            return render(request, 'uploadTemplate.html')
+
+    else:
+        return render(request, 'uploadTemplate.html')

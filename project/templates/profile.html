@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -318,10 +319,24 @@
         .edit-profile:hover{
             transition: all .3s;
             background-color: transparent;
-            background: linear-gradient(135deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
-            /* border: 1px solid #04cff3; */
+            color: white;
+            border: 1px solid aqua!important;
             border: none;
-            transform: scale(1.1);
+            transform: scale(1.05);
+        }
+        .upload-temp{
+            margin-top: 10px;
+            transition: all .3s;
+            left: 25%;
+            width: 50%;
+        }
+        .upload-temp:hover{
+            transition: all .3s;
+            background-color: transparent;
+            color: white;
+            border: 1px solid aqua!important;
+            border: none;
+            transform: scale(1.05);
         }
         @media only screen and (max-width: 767px) {
             .right{
@@ -343,7 +358,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active sign-out" aria-current="page" href="#">Sign Out</a>
+                <a class="nav-link active sign-out" aria-current="page" href="/logout">Sign Out</a>
               </li>
             </ul>
             <form class="d-flex me-auto" role="search">
@@ -351,7 +366,7 @@
               <button class="btn btn-outline-primary searchbtn" type="submit">Search</button>
             </form>
             <div class="col-1 profile">
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" class="profile-photo">
+              <img src="../static/{{profile}}" alt="" class="profile-photo">
               
 
             </div>
@@ -361,7 +376,7 @@
       <div class="container main-container">
         <div class="row my-1">
             <div class="col-sm-12 col-md-3 left mx-0 my-1">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile-img" class="big-img">
+                <img src="../static/{{profile}}" alt="Profile-img" class="big-img">
                 <!-- <table class="info">
                     <tr class="info-row">
                         <td class="info-col field">UserName:</td>
@@ -383,22 +398,15 @@
                 <div class="container info">
                     <div class="row">
                         <div class="col field">UserName</div>
-                        <div class="col value">dp3903</div>
-                    </div>
-                    <div class="row">
-                        <div class="col field">FirstName</div>
-                        <div class="col value">Dhruv</div>
-                    </div>
-                    <div class="row">
-                        <div class="col field">LastName</div>
-                        <div class="col value">Patel</div>
+                        <div class="col value">{{ user.username }}</div>
                     </div>
                     <div class="row">
                         <div class="col field">Email</div>
-                        <div class="col value">dp3903@gmail.com</div>
+                        <div class="col value">{{ user.email }}</div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-outline-primary edit-profile">Edit Profile</button>
+                <button type="submit" onclick="location.href = '/upload';" class="btn btn-outline-light upload-temp">Upload Template</button>
             </div>
             <div class="col right my-1 mx-3">
                 <div class="container">
