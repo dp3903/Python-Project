@@ -85,7 +85,7 @@
         img{
             width: 100%;
             max-height: 250px;
-            box-shadow: 4px 4px 8px grey;
+            box-shadow: 0px 4px 8px grey;
             border-radius: 10px;
         }
         #tempDesc{
@@ -107,10 +107,12 @@
             background: transparent;
         }
         .btn{
-            margin-bottom: 100px;
             margin-left: 40%;
             width: 20%;
             min-width: 80px;
+        }
+        #submit{
+            margin-bottom: 100px;
         }
         @media only screen and (max-width:600px){
             #mainContainer{
@@ -122,19 +124,24 @@
 <body>
     <h1 id="header">Enter Template Details</h1>
     <div class="container" id="mainContainer">
+        <form action="/profile/" method='POST'>
+            {% csrf_token %}
+            <button type='submit' class="btn btn-outline-light back-btn">Back to profile page</button>
+        </form>
         <hr class="hr"/>
-        <form class='' action="#">
+        <form class='' action="/upload/" method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="mb-3">
                 <label for="tempName" class="form-label">Template Name</label>
-                <input type="email" class="form-control" id="tempName" placeholder="Enter the template name.">
+                <input type="text" class="form-control" id="tempName" name="templateName" placeholder="Enter the template name." required>
             </div>
             <div class="mb-3">
                 <label for="tempDesc" class="form-label">Template Description</label>
-                <textarea class="form-control" id="tempDesc" rows="5" placeholder="Enter some Description or some keywords preceded by '#' and seperated by space that will show this template upon search."></textarea>
+                <textarea class="form-control" id="tempDesc" name="description" rows="5" placeholder="Enter some Description or some keywords preceded by '#' and seperated by space that will show this template upon search." required></textarea>
             </div>
             <div class="mb-3">
                 <label for="tempImg" class="form-label">Template Image</label>
-                <input type="file" class="form-control" id="tempImg" placeholder="Enter the template name.">
+                <input type="file" class="form-control" id="tempImg" name="templateImg" placeholder="Enter the template name." required>
             </div>
             Card Demo
             <div class="col cards">
@@ -145,9 +152,10 @@
             </div>
             <div class="mb-3 my-4">
                 <label for="zip" class="form-label">Template as a zip file</label>
-                <input type="file" class="form-control" id="zip">
+                <input type="file" class="form-control" id="zip" name="templateZip" required>
             </div>
-            <button class="btn btn-outline-primary">Upload</button>
+            <input type="hidden" name='date' value='{% now "Y-m-d" %}'>
+            <button type='submit' class="btn btn-outline-primary" name="submit" id='submit'>Upload</button>
         </form>
     </div>
 

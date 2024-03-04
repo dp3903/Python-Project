@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
+from django.db import IntegrityError
 from django.contrib.auth import login, authenticate,logout
 from .forms import CustomUserCreationForm, LoginForm
 from .models import Users
+from templateData.models import Template
+import os
 
 def signUp(request):
     if request.method == 'POST':
@@ -99,9 +102,48 @@ def upload(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
             print('uploading template')
-            # upload logic
-        else:
-            return render(request, 'uploadTemplate.html')
+            print(request.POST)
+            print(request.FILES)
+            
+            imgpath = 'static/templates/tempImages/'
+            filepath = 'static/templates/tempFiles/'
+            name = str(request.user.id) + '_' + request.POST['templateName']
+            try:
+                f = open(imgpath + name +'.jpg','x')
+                f.close()
+                f = open(filepath + name +'.zip','x')
+                f.close()
+                with open(imgpath + name +'.jpg', "wb+") as destination:
+                    for chunk in request.FILES['templateImg'].chunks():
+                        destination.write(chunk)
+                with open(filepath + name +'.zip', "wb+") as destination:
+                    for chunk in request.FILES['templateZip'].chunks():
+                        destination.write(chunk)
+                temp = Template()
+                temp.templateId = str(request.user.id) + '_' + request.POST['templateName']
+                temp.templateName = request.POST['templateName']
+                temp.UID = request.user
+                temp.description = request.POST['description']
+                temp.date = request.POST['date']
+                temp.totaldownloads = 0
+                temp.templateZip = filepath + name
+                temp.save()
+            except FileExistsError :
+                if os.path.isfile(imgpath + name +'.jpg'):
+                    os.remove(imgpath + name +'.jpg')
+                if os.path.isfile(imgpath + name +'.zip'):
+                    os.remove(imgpath + name +'.zip')
+                return HttpResponse('<h1>Template name already exists. Please try again with a different name.<h1>')
+            except:
+                if os.path.isfile(imgpath + name +'.jpg'):
+                    os.remove(imgpath + name +'.jpg')
+                if os.path.isfile(imgpath + name +'.zip'):
+                    os.remove(imgpath + name +'.zip')
+                return HttpResponse('<h1>Some error has occured. Please try again.</h1>')            
+            print(temp)
+            return HttpResponse('<h1>Successfully uploaded template...</h1>')
 
+        else:
+            return redirect('signIn')
     else:
         return render(request, 'uploadTemplate.html')
