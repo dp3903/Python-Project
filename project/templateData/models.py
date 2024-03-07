@@ -19,7 +19,7 @@ class Template(models.Model):
     totaldownloads = models.IntegerField()
 
     def __str__(self):
-        return self.templateId + " " + self.templateName + " " + self.description + " " + self.date
+        return self.templateId + " " + self.templateName + " " + self.description + " " + str(self.date)
     
 
 class AppLogs(models.Model):

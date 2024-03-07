@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,150 +8,220 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <style>
-        body {
-            display: flex;
-            background-color: #000000;
-            margin-top: 1%;
-            margin-bottom: 1%;
-            /* background-image: linear-gradient(to right, #e2e8a2, #acb575, #bbc088, #c2c574); */
+        body{
+            background-color: #101010;
         }
-
-        .container-1{
-            width: 10%;
-            font-weight: 500;
-            font-size: larger;
+        :root{
+            --rotation: 135deg;
         }
-
-        .container-1 ul{
-            list-style-type: none;
-            /* margin: 5%; */
+        ::-webkit-scrollbar{
+            background: transparent;
         }
-
-        .container-1 ul li{
-            margin-top: 10%;
+        .navbar{
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2;
+            background-color: #101010!important;
         }
-
-        .container-1 ul li a{
-            text-decoration: none;
-            /* border: 1px solid black; */
+        .navbar-brand{
+            color: rgb(28, 211, 240);
         }
-
-        /* .sign_out{
-            display: flex;
-            margin-top: 90%;   
-        } */
-
-        .v{
-            border-left: 1px solid rgb(255, 255, 255);
-            border-right: 1px solid blue;
-            border-bottom: 1px solid rgb(255, 255, 255);
-            border-top: 1px solid blue;
-            border-radius: 10px;
-            width: 8px;
-            height: 95vh;
+        .navbar-brand:hover{
+            color: rgb(28, 211, 240);
         }
-
-        /* .content {
-            width: 90vw;
-            height: 100vh;
-            box-sizing: border-box;
+        .navbar{
+            border-bottom: 1px solid grey;    
         }
-
-        .details li{
-            list-style-type: none;
-            color: rgb(0, 0, 0);
-            border: 1px dotted rgb(0, 0, 0);
-            width: 10vw;
-            padding: 0.25%;
-            margin: 1%;
-        }
-        .details li a{
-            text-decoration: none;
-        } */
-
-        .container{
-            width: 70%;
-        }
-
-        .container .image{
-            /* height: 50%; */
-            border: 1px solid rgb(255, 255, 255);
-            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
-            display: flex;
-            justify-content: center;
-        }
-
-        .container .image img{
-            width : 50%;
-        }
-
-        .container .details ul li{
+        .profile{
+            color: gray;
             font-size: large;
-            font-weight: 500;
-            list-style-type: none;
-            border: 1px solid rgb(255, 255, 255);
-            margin-top: 2%;
-            margin-right: 4%;
-            padding: 1%;
-            color: aliceblue;
-            box-shadow: 0 4px 5px 0 rgba(226, 255, 119, 0.75);
+            text-align: end;
         }
-
-        .container .download_button{
+        .profile-photo{
+            margin-top: 10px;
+            box-shadow: 0px 0px 4px;
+            border-radius: 50%;
+            height: 45px;
+            width: 45px;
+        }
+        .profile-photo:hover{
+            box-shadow: 0px 0px 10px whitesmoke;
+        }
+        .searchbar{
+            border: 1px solid magenta;
+            background-color: #101010;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .searchbar::placeholder{
+            color: violet;
+            opacity: 0.6;
+        }
+        .searchbar:hover{
+            box-shadow: 0px 0px 4px white;
+            border: 1px solid aqua;
+        }
+        .searchbar:hover::placeholder{
+            color: aqua;
+            opacity: 1;
+        }
+        .searchbtn:hover{
+            background-color: transparent;
+            border-color: aqua;
+        }
+        
+        .sign-out{
+            color: blue!important;
+        }
+        .sign-out:hover{
+            color: aqua!important;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(34,5,250, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+        .navbar-toggler-icon:hover {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,255,255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+        .nav-header{
+            text-align: center;
+            background-color: rgba(255,0,164,1);
+            background-image: linear-gradient(180deg, rgba(7,0,36,1) 0%, rgba(63,9,121,1) 26%, rgba(255,0,164,1) 100%);
+            background-size: 100%;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            -moz-text-fill-color: transparent;
+        }
+        #profilebtn{
+            border: none;
+            background: transparent;
+        }
+        .row{
+            margin-top: 100px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin-left: 4%;
         }
-
-        .container .download_button button{
-            font-size: larger;
-            width: 30vw;
-            height: 5vh;
-            font-weight: 500;
-            border: 2px solid #42EADDFF;
-            border-radius: 20px;
+        .image{
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        img{
+            max-height: 350px;
+            box-shadow: 0px 0px 30px rgba(0,0,255,0.7);
+            border-radius: 8px;
+            border: 2px solid whitesmoke;
+        }
+        .section-2{
+            display: flex;
+            justify-content: center;
+        }
+        .details{
             color: white;
-            background-image: linear-gradient(to right, #e125e1, #4481eb, #04befe, #ed3fea);
-            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+            width: 60%;
+        }
+        .details tr{
+            border-bottom: 1px solid grey;
+        }
+        .download{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 20%;
+            min-width: fit-content;
+        }
+        .names{
+            padding-top: 20px;
+            padding-bottom: 0px;
+            width: 50%;
+        }
+        .values{
+            {% comment %} border: 1px solid blue; {% endcomment %}
+            padding-top: 20px;
+            padding-bottom: 0px;
         }
 
-        .container .download_button button:hover{
-            background-image: linear-gradient(to right, #33f580, #e7f489, #f93aa0, #57ed91);
+        @media only screen and (max-width:1000px){
+            .container .image{
+                height: 200px;
+            }
+    
+            .container .image img{
+                height: 100%;
+            }
+
+            .details{
+                width: 100%;
+            }
         }
     </style>
     
 </head>
 <body>
-    <div class="container-1">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li class="sign_out"><a href="#">Sign Out</a></li>
-        </ul>            
-    </div>
-
-    <div class="v"></div>
-
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <h3 class="nav-header">UI Stack Exchange</h3>
+            <button class="navbar-toggler navbarbtn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-dark navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <h3 class="nav-header">&nbsp&nbsp Welcome {{ user.username }}</h3>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active sign-out" aria-current="page" href="/logout">Sign Out</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-auto" role="search">
+                    <input class="me-2 searchbar" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-secondary searchbtn" type="submit">Search</button>
+                </form>
+            <div class="col-1 profile">
+                <form  action='/profile/' method='POST'>
+                    {% csrf_token %}
+                    <button type='submit' id='profilebtn'>
+                        <img src="../static/profile.jpg" alt="" class="profile-photo">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
     <div class="container">
-        <div class="image">
-            <img src="https://wallpaperaccess.com/full/4711385.jpg" alt="">
-        </div>
+        <div class="row">
+            <div class="image">
+                <img src="../static/templates/tempImages/{{id}}.jpg" alt="">
+            </div>
+            
+            <div class="section-2">
 
-        <div class="details">
-            <ul>
-                <li><span>Uploaded By</span></li>
-                <li><span href="#">Date</span></li>
-                <li><span href="#">Total Downloads</span></li>
-                <li><span href="#">Description</span></li>
-            </ul>
-        </div>
-
-        <div class="download_button">
-            <button type="button">Download</button>
+                <table class="details">          
+                    <tr class="items">
+                        <td class="names">Uploaded By:</td>
+                        <td class="values">{{owner}}</td>
+                    </tr>
+                    <tr class="items">
+                        <td class="names">Upload Date:</td>
+                        <td class="values">{{date}}</td>
+                    </tr>
+                    <tr class="items">
+                        <td class="names">Total Downloads:</td>
+                        <td class="values">{{totdown}}</td>
+                    </tr>
+                    <tr class="items">
+                        <td class="names">Description:</td>
+                        <td class="values">{{description}}</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <button type="button" class="btn btn-outline-primary download">Download</button>
         </div>
     </div>
 
+        
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>

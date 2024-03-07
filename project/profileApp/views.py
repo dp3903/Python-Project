@@ -57,13 +57,16 @@ def home(request):
         context = {}
         if(profileImg[0][0] == ''):
             context = {
-                'profile' : 'profile.jpg'
+                'profile' : 'profile.jpg',
+                'templates' : Template.objects.all()
             }
         else:
             context = {
-                'profile' : profileImg[0][0][7:]
+                'profile' : profileImg[0][0][7:],
+                'templates' : Template.objects.all()
             }
         print(context)
+        print(context['templates'][0])
 
         return render(request, 'home.html', context)
     else:
@@ -129,16 +132,12 @@ def upload(request):
                 temp.templateZip = filepath + name
                 temp.save()
             except FileExistsError :
-                if os.path.isfile(imgpath + name +'.jpg'):
-                    os.remove(imgpath + name +'.jpg')
-                if os.path.isfile(imgpath + name +'.zip'):
-                    os.remove(imgpath + name +'.zip')
                 return HttpResponse('<h1>Template name already exists. Please try again with a different name.<h1>')
             except:
                 if os.path.isfile(imgpath + name +'.jpg'):
                     os.remove(imgpath + name +'.jpg')
-                if os.path.isfile(imgpath + name +'.zip'):
-                    os.remove(imgpath + name +'.zip')
+                if os.path.isfile(filepath + name +'.zip'):
+                    os.remove(filepath + name +'.zip')
                 return HttpResponse('<h1>Some error has occured. Please try again.</h1>')            
             print(temp)
             return HttpResponse('<h1>Successfully uploaded template...</h1>')
@@ -147,3 +146,28 @@ def upload(request):
             return redirect('signIn')
     else:
         return render(request, 'uploadTemplate.html')
+
+
+def template(request):
+    if request.user.is_authenticated:
+
+        tid = request.GET.get('id','')
+        print(tid)
+        uid = tid.split('_')[0]
+        # print(uid)
+        uploader = Users.objects.filter(id = uid).values_list('username')[0][0]
+        # print(uploader)
+        temp = Template.objects.filter(templateId = tid).values_list('description','date','totaldownloads')
+        # print(temp)
+        context = {
+            'id': tid,
+            'owner': uploader,
+            'description': temp[0][0],
+            'date': temp[0][1],
+            'totdown': temp[0][2]
+        }
+        print(context)
+
+        return render(request, 'template.html', context)
+    else:
+        return redirect('signIn')
