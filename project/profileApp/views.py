@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.db import IntegrityError
 from django.contrib.auth import login, authenticate,logout
-from .forms import CustomUserCreationForm, LoginForm
+from .forms import CustomUserCreationForm, LoginForm, EditUserProfileForm
 from .models import Users
 from templateData.models import Template
 import os
+from django.views import generic
+from django.urls import reverse_lazy
+import sqlite3
+from pathlib import Path
 
 def signUp(request):
     if request.method == 'POST':
@@ -48,6 +52,7 @@ def signIn(request):
         return render(request, 'signIn.html', {'status': True})
 
 
+# home page
 def home(request):
     if request.user.is_authenticated:
         profileImg = Users.objects.filter(username = request.user.username).values_list('profile_img')
@@ -57,21 +62,17 @@ def home(request):
         context = {}
         if(profileImg[0][0] == ''):
             context = {
-                'profile' : 'profile.jpg',
-                'templates' : Template.objects.all()
+                'profile' : 'profile.jpg'
             }
         else:
             context = {
-                'profile' : profileImg[0][0][7:],
-                'templates' : Template.objects.all()
+                'profile' : profileImg[0][0][7:]
             }
         print(context)
-        print(context['templates'][0])
 
         return render(request, 'home.html', context)
     else:
         return redirect('signIn')
-
 
 def log_out(request):
     logout(request)
@@ -171,3 +172,43 @@ def template(request):
         return render(request, 'template.html', context)
     else:
         return redirect('signIn')
+
+# Edit user profile
+def UpdateUserView(request):
+    user = Users.objects.get(id=request.user.id)
+
+    if request.method == 'POST':
+        form = EditUserProfileForm(request.POST, request.FILES, instance=user)
+
+        if form.is_valid():
+            profile = Users.objects.get(id=request.user.id)
+            if form.cleaned_data['profile_img'] != profile.profile_img:
+                # retrive old profile_img path and delete it from server
+                profile.profile_img.delete(save=True)
+
+            form.save()
+            return redirect('home')
+
+    return render(request, 'edituserProfile.html')
+
+# Delete user profile
+def DeleteUserProfile(request):
+    templateData = Template.objects.filter(UID_id=request.user.id)
+
+    if templateData:
+        for row in templateData:
+            imgpath = Path(f'static/templates/tempImages/{row.templateId}.jpg')
+            filepath = Path(f'static/templates/tempFiles/{row.templateId}.zip')
+            
+            # to delete files
+            if imgpath.exists():
+                imgpath.unlink()
+            if filepath.exists():
+                filepath.unlink()
+            
+            # to delete rows from the database
+            row.delete()
+
+    request.user.profile_img.delete(save=True)
+    request.user.delete()
+    return redirect('signUp')

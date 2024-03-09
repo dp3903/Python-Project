@@ -10,4 +10,6 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("upload/", views.upload, name="upload"),
     path("template/", views.template, name="template"),
+    path('editProfile/', views.UpdateUserView, name='editProfile'),
+    path('deleteProfile/', views.DeleteUserProfile, name='deleteProfile'),
 ]
