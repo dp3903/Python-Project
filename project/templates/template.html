@@ -140,6 +140,28 @@
             padding-bottom: 0px;
         }
 
+        .back_button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            left: 25%;
+            width: 100px;
+            background-color: black;
+        }
+
+        .back{
+            width: 15px;
+            height: 15px;
+            margin: 1px;
+            box-shadow: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .back_button:hover{
+            background-color: rgb(255, 255, 255);
+        }
+
         @media only screen and (max-width:1000px){
             .container .image{
                 height: 200px;
@@ -159,7 +181,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <h3 class="nav-header">UI Stack Exchange</h3>
+            <a class="navbar-brand" href="{% url 'home' %}">UI Stack Exchange</a>
             <button class="navbar-toggler navbarbtn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-dark navbar-toggler-icon"></span>
             </button>
@@ -189,6 +211,13 @@
         </div>
     </nav>
     <div class="container">
+        <div class="row" style="float: left;">
+            <button class="btn btn-outline-light back_button" onclick="history.back()">
+                <img src="../static/left-arrow.png" alt="Back" class="back"/> Back
+            </button>
+        </div>
+        <br>
+        <br>
         <div class="row">
             <div class="image">
                 <img src="../static/templates/tempImages/{{id}}.jpg" alt="">

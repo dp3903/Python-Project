@@ -304,13 +304,46 @@
             transform: scale(1.05);
         }
 
-        .delete-profile{
+        .delete-profile {
+            font-size: large;
+            font-weight: 500;
             margin-top: 10px;
             transition: all .3s;
             left: 25%;
             width: 50%;
-            color: red;
-            border-color: red;
+            color: white;
+            background-color: red;
+        }
+
+        .delete-profile:hover {
+            transition: all .3s;
+            background-color: transparent ;
+            color: white;
+            border: 1px solid aqua !important;
+            border: none;
+            transform: scale(1.05);
+        }
+
+        .back_button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            left: 25%;
+            width: 100px;
+            background-color: black;
+        }
+
+        .back{
+            width: 15px;
+            height: 15px;
+            margin: 1px;
+            box-shadow: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .back_button:hover{
+            background-color: rgb(255, 255, 255);
         }
 
         @media only screen and (max-width: 767px) {
@@ -328,7 +361,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">UI Stack Exchange</a>
+            <a class="navbar-brand" href="{% url 'home' %}">UI Stack Exchange</a>
             <button class="navbar-toggler navbarbtn" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -351,6 +384,11 @@
         </div>
     </nav>
     <div class="container main-container">
+        <div class="row">
+            <button class="btn btn-outline-light back_button" onclick="history.back()">
+                <img src="../static/left-arrow.png" alt="Back" class="back"/> Back
+            </button>
+        </div>
         <div class="row my-1">
             <div class="col-sm-12 col-md-3 left mx-0 my-1">
                 <img src="../static/{{profile}}" alt="Profile-img" class="big-img">
@@ -364,9 +402,9 @@
                         <div class="col value">{{ user.email }}</div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-primary edit-profile" ><a href="{% url 'editProfile' %}">Edit Profile</a></button>
+                <a href="{% url 'editProfile' %}" class="btn btn-outline-primary edit-profile" >Edit Profile</a>
                 <button type="submit" class="btn btn-outline-light upload-temp" onclick="location.href = '/upload';">Upload Template</button>
-                <button type="submit" class="btn btn-outline-primary delete-profile" ><a href="{% url 'deleteProfile' %}">Delete Profile</a></button>
+                <a href="{% url 'deleteProfile' %}" class="btn btn-outline-primary delete-profile">Delete Profile</a>
             </div>
             <div class="col right my-1 mx-3">
                 <div class="container">
