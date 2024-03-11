@@ -56,17 +56,22 @@ def signIn(request):
 def home(request):
     if request.user.is_authenticated:
         profileImg = Users.objects.filter(username = request.user.username).values_list('profile_img')
+        templates = Template.objects.all()
+        # templates = list(templates)
+        # print(templates)
         # print(profileImg[0][0])
         # print(type(profileImg[0][0]))
         # print(profileImg[0][0] == '')
         context = {}
         if(profileImg[0][0] == ''):
             context = {
-                'profile' : 'profile.jpg'
+                'profile' : 'profile.jpg',
+                'templates' : templates
             }
         else:
             context = {
-                'profile' : profileImg[0][0][7:]
+                'profile' : profileImg[0][0][7:],
+                'templates' : templates
             }
         print(context)
 
