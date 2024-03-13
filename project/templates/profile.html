@@ -404,7 +404,7 @@
                 </div>
                 <a href="{% url 'editProfile' %}" class="btn btn-outline-primary edit-profile" >Edit Profile</a>
                 <button type="submit" class="btn btn-outline-light upload-temp" onclick="location.href = '/upload';">Upload Template</button>
-                <a href="{% url 'deleteProfile' %}" class="btn btn-outline-primary delete-profile">Delete Profile</a>
+                <a href="{% url 'deleteProfile' %}" onclick="return confirm('Are you sure?')" class="btn btn-outline-primary delete-profile">Delete Profile</a>
             </div>
             <div class="col right my-1 mx-3">
                 <div class="container">
