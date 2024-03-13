@@ -73,7 +73,7 @@ def home(request):
                 'profile' : profileImg[0][0][7:],
                 'templates' : templates
             }
-        print(context)
+        # print(context)
 
         return render(request, 'home.html', context)
     else:
@@ -168,14 +168,16 @@ def template(request):
         # print(uploader)
         temp = Template.objects.filter(templateId = tid).values_list('description','date','totaldownloads')
         # print(temp)
+        profileImg = Users.objects.filter(username = request.user.username).values_list('profile_img')[0][0][7:]
         context = {
             'id': tid,
             'owner': uploader,
+            'profile' : profileImg,
             'description': temp[0][0],
             'date': temp[0][1],
             'totdown': temp[0][2]
         }
-        print(context)
+        # print(context)
 
         return render(request, 'template.html', context)
     else:
@@ -220,3 +222,18 @@ def DeleteUserProfile(request):
     request.user.profile_img.delete(save=True)
     request.user.delete()
     return redirect('signUp')
+
+
+def download(request):
+    if request.user.is_authenticated:
+        tid = request.GET.get('Tid','')
+        file_path = 'static/templates/tempFiles/' + tid + '.zip'
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as fh:
+                response = HttpResponse(fh.read(), content_type="application/.Zip")
+                response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+                return response
+        raise Http404
+        # return redirect('home')
+    else:
+        return redirect('signIn')
