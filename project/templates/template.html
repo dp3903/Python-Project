@@ -44,6 +44,7 @@
             border-radius: 50%;
             height: 45px;
             width: 45px;
+            border: none;
         }
         .profile-photo:hover{
             box-shadow: 0px 0px 10px whitesmoke;
@@ -162,6 +163,10 @@
             background-color: rgb(255, 255, 255);
         }
 
+        .download-form{
+            text-align: center;
+        }
+
         @media only screen and (max-width:1000px){
             .container .image{
                 height: 200px;
@@ -204,7 +209,7 @@
                 <form  action='/profile/' method='POST'>
                     {% csrf_token %}
                     <button type='submit' id='profilebtn'>
-                        <img src="../static/profile.jpg" alt="" class="profile-photo">
+                        <img src="../static/{{profile}}" alt="" class="profile-photo">
                     </button>
                 </form>
             </div>
@@ -245,7 +250,10 @@
                 </table>
             </div>
             <br>
-            <button type="button" class="btn btn-outline-primary download">Download</button>
+            <form class="download-form" action="/download" method="get">
+                <input type="hidden" name="Tid" value="{{id}}">
+                <button type="submit" class="btn btn-outline-primary download">Download</button>
+            </form>
         </div>
     </div>
 
