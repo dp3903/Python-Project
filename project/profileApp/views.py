@@ -88,17 +88,20 @@ def profile(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
             profileImg = Users.objects.filter(username = request.user.username).values_list('profile_img')
+            uploadTemplates = Template.objects.filter(UID_id = request.user.id)
             # print(profileImg[0][0])
             # print(type(profileImg[0][0]))
             # print(profileImg[0][0] == '')
             context = {}
             if(profileImg[0][0] == ''):
                 context = {
-                    'profile' : 'profile.jpg'
+                    'profile' : 'profile.jpg',
+                    'uploadTemplates' : uploadTemplates
                 }
             else:
                 context = {
-                    'profile' : profileImg[0][0][7:]
+                    'profile' : profileImg[0][0][7:],
+                    'uploadTemplates' : uploadTemplates
                 }
             print(context)
             return render(request, 'profile.html', context)
