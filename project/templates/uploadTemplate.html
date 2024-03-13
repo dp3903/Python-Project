@@ -113,6 +113,47 @@
         #submit{
             margin-bottom: 100px;
         }
+        .back_button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            left: 25%;
+            width: 100px;
+            background-color: black;
+        }
+
+        .back{
+            width: 15px;
+            height: 15px;
+            margin: 1px;
+            box-shadow: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .back_button:hover{
+            background-color: rgb(255, 255, 255);
+        }.back_button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            left: 25%;
+            width: 100px;
+            background-color: black;
+        }
+
+        .back{
+            width: 15px;
+            height: 15px;
+            margin: 1px;
+            box-shadow: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .back_button:hover{
+            background-color: rgb(255, 255, 255);
+        }
         @media only screen and (max-width:600px){
             #mainContainer{
                 width: 90%;
@@ -123,10 +164,11 @@
 <body>
     <h1 id="header">Enter Template Details</h1>
     <div class="container" id="mainContainer">
-        <form action="/profile/" method='POST'>
-            {% csrf_token %}
-            <button type='submit' class="btn btn-outline-light back-btn">Back to profile page</button>
-        </form>
+        <div class="row">
+            <button class="btn btn-outline-light back_button" onclick="history.back()">
+                <img src="../static/left-arrow.png" alt="Back" class="back"/> Back
+            </button>
+        </div>
         <hr class="hr"/>
         <form class='' action="/upload/" method='POST' enctype="multipart/form-data">
             {% csrf_token %}
