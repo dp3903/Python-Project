@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2024 at 12:09 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Mar 13, 2024 at 12:48 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -195,6 +195,7 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('dv8ezf5qxt2vv76nsuapd88ads7hcuzp', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rkLdc:c2VLoeMZbcCmokUM09CMLeBfHEhy_x9mhjp8kZULfNM', '2024-03-27 10:15:08.164270'),
+('i7oeoucvc4a3u1x8r46qgyky1zcfpj5s', '.eJxVjEEOwiAQRe_C2hAKI7Qu3XsGMswMUjU0Ke3KeHdD0oVu_3vvv1XEfStxb7LGmdVFDer0uyWkp9QO-IH1vmha6rbOSXdFH7Tp28Lyuh7u30HBVnptM1KCfA4uWAriHRrJAJjRGUucZRwdeYbBEEoWdjzBFCCIMz5Zrz5fEO44wA:1rkN3D:gkFruZ5e4MMoV8BJI5zmj9qUAzR5b9iIheWcMg3uqOI', '2024-03-27 11:45:39.346690'),
 ('qyvklnfq22ncxt4zcg5btc56co8sy4x1', '.eJxVjEEOwiAQRe_C2hAKI7Qu3XsGMswMUjU0Ke3KeHdD0oVu_3vvv1XEfStxb7LGmdVFDer0uyWkp9QO-IH1vmha6rbOSXdFH7Tp28Lyuh7u30HBVnptM1KCfA4uWAriHRrJAJjRGUucZRwdeYbBEEoWdjzBFCCIMz5Zrz5fEO44wA:1rj2NB:8wzhNFnb3OLISzT-26dN0S_qXoXvI8cWD7bFyPE2aic', '2024-03-23 19:28:45.980975');
 
 -- --------------------------------------------------------
@@ -223,7 +224,6 @@ CREATE TABLE `profileapp_users` (
 --
 
 INSERT INTO `profileapp_users` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `profile_img`) VALUES
-(1, 'pbkdf2_sha256$600000$GRwYlNLtzSIyZXjr4l3nMF$ngVdDboXS6BfCPrlNeaUlr4eriicaaAWuUmD7X8wcjY=', '2024-03-09 19:28:45.978059', 0, 'Nisarg', '', '', 'patel123@gmail.com', 0, 1, '2024-03-09 18:14:31.702668', 'static/img1.jpg'),
 (2, 'pbkdf2_sha256$600000$oh8I1rOJfqUMChvbxph9PQ$qfIVhugV5Gdz16/qmRSYrlaP1E5d6pifuT71S0AC7Ns=', '2024-03-09 19:18:58.053868', 0, 'Jainish', '', '', 'patel456@gmail.com', 0, 1, '2024-03-09 19:15:14.528987', 'static/img1_vB3vZsk.jpg'),
 (3, 'pbkdf2_sha256$600000$4mwDubvB2AZpfMWVReA1jJ$X3ApeINq1IfCC8fc2e8jLAG5DWpZ6ASPnqxKqd+HQew=', '2024-03-13 10:15:08.157323', 0, 'dhruv', '', '', 'abd@gmail.com', 0, 1, '2024-03-11 12:49:38.938589', 'static/wallpaperflare.com_wallpaper_1.jpg');
 
