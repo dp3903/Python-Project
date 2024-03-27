@@ -95,6 +95,14 @@ def profile(request):
         if request.user.is_authenticated:
             profileImg = Users.objects.filter(username = request.user.username).values_list('profile_img')
             uploadTemplates = Template.objects.filter(UID_id = request.user.id)
+            downloadTemplateIds = AppLogs.objects.filter(transaction_type = "download", UID_id = request.user.id).values_list('TID_id',flat = True)
+            # print(downloadTemplateIds)
+            downloadTemplates = []
+            for item in downloadTemplateIds:
+                temp = Template.objects.filter(templateId = item)[0]
+                downloadTemplates.append(temp)
+            # print(downloadTemplates)
+            
             # print(profileImg[0][0])
             # print(type(profileImg[0][0]))
             # print(profileImg[0][0] == '')
@@ -102,12 +110,14 @@ def profile(request):
             if(profileImg[0][0] == ''):
                 context = {
                     'profile' : 'profile.jpg',
-                    'uploadTemplates' : uploadTemplates
+                    'uploadTemplates' : uploadTemplates,
+                    'downloadTemplates' : downloadTemplates
                 }
             else:
                 context = {
                     'profile' : profileImg[0][0][7:],
-                    'uploadTemplates' : uploadTemplates
+                    'uploadTemplates' : uploadTemplates,
+                    'downloadTemplates' : downloadTemplates
                 }
             print(context)
             return render(request, 'profile.html', context)
