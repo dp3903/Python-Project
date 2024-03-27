@@ -259,6 +259,9 @@ def download(request):
                 newlog.UID = Users.objects.filter(id = request.user.id)[0]
                 # print(newlog)
                 newlog.save()
+                temp = Template.objects.filter(templateId = tid)[0]
+                temp.totaldownloads += 1
+                temp.save()
                 return response
         raise Http404
         # return redirect('home')
