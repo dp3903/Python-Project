@@ -28,10 +28,11 @@ class AppLogs(models.Model):
         ("download", "download"),
         ("delete", "delete"),
         ("new", "new"),
+        ("update", "update"),
         ("default", "default"),
     )
     transaction_type = models.CharField(max_length=10,choices=CHOICES,default="default",blank=True)
-    TID = models.ForeignKey(Template, on_delete=models.CASCADE)
+    TID = models.ForeignKey(Template, on_delete=models.CASCADE, null = True)
     UID = models.ForeignKey(Users, on_delete=models.CASCADE)
     def __str__(self):
         return self.transaction_type + " " + self.UID + " " + self.TID
