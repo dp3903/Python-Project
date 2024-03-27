@@ -187,6 +187,7 @@ def template(request):
         context = {
             'id': tid,
             'owner': uploader,
+            'isowner': str(uid) == str(request.user.id),
             'profile' : profileImg,
             'description': temp[0][0],
             'date': temp[0][1],
@@ -263,3 +264,22 @@ def download(request):
         # return redirect('home')
     else:
         return redirect('signIn')
+
+def delete(request):
+    if request.user.is_authenticated:
+        tid = request.GET["tid"]
+        imgpath = Path(f'static/templates/tempImages/{tid}.jpg')
+        filepath = Path(f'static/templates/tempFiles/{tid}.zip')
+            
+        # to delete files
+        if imgpath.exists():
+            imgpath.unlink()
+        if filepath.exists():
+            filepath.unlink()
+
+        temp = Template.objects.filter(templateId = tid)
+        temp.delete()
+
+        return redirect('home')
+
+    return redirect('signIn')

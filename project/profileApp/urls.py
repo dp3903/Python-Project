@@ -12,5 +12,6 @@ urlpatterns = [
     path("template/", views.template, name="template"),
     path('editProfile/', views.UpdateUserView, name='editProfile'),
     path('deleteProfile/', views.DeleteUserProfile, name='deleteProfile'),
-    path('download', views.download, name='download'),
+    path('download/', views.download, name='download'),
+    path('delete/', views.delete, name='delete'),
 ]
