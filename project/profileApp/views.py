@@ -9,6 +9,8 @@ from django.views import generic
 from django.urls import reverse_lazy
 import sqlite3
 from pathlib import Path
+from django.db.models import Q
+
 
 def signUp(request):
     if request.method == 'POST':
@@ -73,7 +75,7 @@ def home(request):
                 'profile' : profileImg[0][0][7:],
                 'templates' : templates
             }
-        print(context)
+        # print(context)
 
         return render(request, 'home.html', context)
     else:
@@ -217,3 +219,46 @@ def DeleteUserProfile(request):
     request.user.profile_img.delete(save=True)
     request.user.delete()
     return redirect('signUp')
+
+# def  searchTemplate(request):
+#     query = request.GET.get('q', '')
+#     templates = Template.objects.all()
+
+#     if query:
+#         # Use Q objects to perform a case-insensitive search on the description field
+#         templates = templates.filter(Q(description__icontains=query))
+    
+#     context = {'templates': templates, 'query': query}
+#     return render(request, 'searchResult.html', context)   
+
+# from django.shortcuts import render
+# from .models import Template
+
+def searchTemplate(request):
+    if request.user.is_authenticated:
+        query = request.POST['query']
+        print(query)
+
+        if query:
+            templates = Template.objects.filter(description__icontains=query)
+            print(templates)
+            profileImg = Users.objects.filter(username=request.user.username).values_list('profile_img')
+            context = {}
+            if profileImg and profileImg[0][0] == '':
+                context = {
+                    'profile': 'profile.jpg',
+                    'templates': templates
+                }
+            else:
+                context = {
+                    'profile': profileImg[0][0][7:],
+                    'templates': templates
+                }
+            return render(request, 'searchResult.html', context)
+        
+        else :
+        # No search query provided, handle accordingly
+         return redirect('home')
+
+    # User not authenticated, redirect to sign-in page
+    return redirect('signIn')

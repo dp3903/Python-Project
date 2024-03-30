@@ -196,8 +196,9 @@
                         <a class="nav-link active sign-out" aria-current="page" href="/logout">Sign Out</a>
                     </li>
                 </ul>
-                <form class="d-flex me-auto" role="search">
-                    <input class="me-2 searchbar" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex me-auto" role="search" method="POST" action="{% url 'searchTemplate' %}">
+                    {% csrf_token %}
+                    <input name="query" class="me-2 searchbar" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-secondary searchbtn" type="submit">Search</button>
                 </form>
             <div class="col-1 profile">

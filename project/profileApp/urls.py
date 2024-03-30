@@ -12,4 +12,5 @@ urlpatterns = [
     path("template/", views.template, name="template"),
     path('editProfile/', views.UpdateUserView, name='editProfile'),
     path('deleteProfile/', views.DeleteUserProfile, name='deleteProfile'),
+    path('search/',views.searchTemplate,name='searchTemplate'),
 ]
