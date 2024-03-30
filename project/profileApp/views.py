@@ -5,11 +5,8 @@ from .forms import CustomUserCreationForm, LoginForm, EditUserProfileForm
 from .models import Users
 from templateData.models import Template,AppLogs
 import os
-from django.views import generic
-from django.urls import reverse_lazy
-import sqlite3
 from pathlib import Path
-from django.db.models import Q
+import math
 
 
 def signUp(request):
@@ -65,6 +62,8 @@ def home(request):
     if request.user.is_authenticated:
         profileImg = Users.objects.filter(username = request.user.username).values_list('profile_img')
         templates = Template.objects.all()
+        e1 = math.floor(len(templates)/2)
+        s2 = e1+1
         # templates = list(templates)
         # print(templates)
         # print(profileImg[0][0])
@@ -74,12 +73,14 @@ def home(request):
         if(profileImg[0][0] == ''):
             context = {
                 'profile' : 'profile.jpg',
-                'templates' : templates
+                'row1' : templates[:e1],
+                'row2' : templates[s2:]
             }
         else:
             context = {
                 'profile' : profileImg[0][0][7:],
-                'templates' : templates
+                'row1' : templates[:e1],
+                'row2' : templates[s2:]
             }
         # print(context)
 
@@ -256,7 +257,6 @@ def DeleteUserProfile(request):
     request.user.delete()
     return redirect('signUp')
 
-<<<<<<< HEAD
 # def  searchTemplate(request):
 #     query = request.GET.get('q', '')
 #     templates = Template.objects.all()
@@ -299,7 +299,6 @@ def searchTemplate(request):
 
     # User not authenticated, redirect to sign-in page
     return redirect('signIn')
-=======
 
 def download(request):
     if request.user.is_authenticated:
@@ -309,15 +308,16 @@ def download(request):
             with open(file_path, 'rb') as fh:
                 response = HttpResponse(fh.read(), content_type="application/.Zip")
                 response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+                temp = Template.objects.filter(templateId = tid)[0]
+                temp.totaldownloads += 1
+                temp.save()
                 newlog = AppLogs()
                 newlog.transaction_type = "download"
                 newlog.TID = Template.objects.filter(templateId = tid)[0]
                 newlog.UID = Users.objects.filter(id = request.user.id)[0]
-                # print(newlog)
+                print(newlog.UID)
+                print(newlog.TID)
                 newlog.save()
-                temp = Template.objects.filter(templateId = tid)[0]
-                temp.totaldownloads += 1
-                temp.save()
                 return response
         raise Http404
         # return redirect('home')
@@ -342,4 +342,3 @@ def delete(request):
         return redirect('home')
 
     return redirect('signIn')
->>>>>>> b0cc2903fb99021a84c7549ce13459a6ed3e2695

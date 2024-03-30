@@ -10,7 +10,7 @@ from django.core.files.base import ContentFile, File
 #         return self.id + " " + self.username
 
 class Template(models.Model):
-    templateId = models.CharField(max_length=10,primary_key=True)
+    templateId = models.CharField(max_length=30,primary_key=True)
     templateName = models.CharField(max_length=20)
     UID = models.ForeignKey(Users, on_delete=models.CASCADE)
     description = models.TextField()

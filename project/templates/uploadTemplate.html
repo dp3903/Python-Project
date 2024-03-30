@@ -154,6 +154,12 @@
         .back_button:hover{
             background-color: rgb(255, 255, 255);
         }
+
+        .name-help{
+            opacity: 0.4;
+            padding-left: 10px;
+        }
+
         @media only screen and (max-width:600px){
             #mainContainer{
                 width: 90%;
@@ -174,6 +180,11 @@
             {% csrf_token %}
             <div class="mb-3">
                 <label for="tempName" class="form-label">Template Name</label>
+                <div class="name-help">
+                    * Name should be less then 30 characters including spaces and should not contain any special characters. *<br>
+                    * Name will not be visible to anyone after submitting and is only used to seperate your templates. *<br>
+                    * As such make sure the name you use is not something you have used for your previous templates. *
+                </div>
                 <input type="text" class="form-control" id="tempName" name="templateName" placeholder="Enter the template name." required>
             </div>
             <div class="mb-3">

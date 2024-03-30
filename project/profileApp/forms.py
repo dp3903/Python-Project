@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import Users
 
 class CustomUserCreationForm(UserCreationForm):
-    profile_img = forms.ImageField()
+    profile_img = forms.ImageField(required=False)
 
     class Meta:
         model = Users

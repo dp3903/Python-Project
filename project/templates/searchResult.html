@@ -56,7 +56,6 @@
             height: 350px;
             max-height: 400px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px white inset;
         }
 
         .cards::before {
@@ -195,6 +194,29 @@
             -webkit-text-fill-color: transparent;
             -moz-text-fill-color: transparent;
         }
+
+        .back_button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            left: 25%;
+            width: 100px;
+            background-color: black;
+        }
+
+        .back{
+            width: 15px;
+            height: 15px;
+            margin: 1px;
+            box-shadow: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .back_button:hover{
+            background-color: rgb(255, 255, 255);
+        }
+
     </style>
 </head>
 
@@ -236,7 +258,15 @@
         </div>
     </nav>
     <div class="container">
-        <h1 class="header">Search Results</h1>
+        
+        <h1 class="header">
+            <div class="row">
+                <button class="btn btn-outline-light back_button" onclick="history.back()">
+                    <img src="../static/left-arrow.png" alt="Back" class="back"/> Back
+                </button>
+            </div>
+            Search Results
+        </h1>
         <div class="row main-rows">
             {% for item in templates %}
             <a href='/template?id={{ item.templateId }}' class="col cards">

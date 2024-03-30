@@ -84,8 +84,20 @@
         }
 
         .searchbar {
-            border: 1px solid grey;
+            border: 1px solid magenta;
             background-color: #101010;
+            border-radius: 4px;
+            padding: 5px;
+            color: #fff;
+        }
+
+        .searchbar::placeholder {
+            color: violet;
+            opacity: 0.6;
+        }
+
+        .searchbar:hover {
+            box-shadow: 0px 0px 4px white;
         }
 
         .searchbtn:hover {
@@ -346,6 +358,11 @@
             background-color: rgb(255, 255, 255);
         }
 
+        .empty-array{
+            color: grey;
+            margin-left: 30px;
+        }
+
         @media only screen and (max-width: 767px) {
             .right {
                 border: none;
@@ -410,27 +427,36 @@
             <div class="col right my-1 mx-3">
                 <div class="container">
                     <h1 class="headers">Downloads</h1>
+                    {% if downloadTemplates|length == 0 %}
+                        <h2 class="empty-array">You have no Downloads.</h2>
+                    {% else %}
                     <div class="row downloads">
                         {% for temp in downloadTemplates %}
-                            <a href='/template?id={{temp.templateId}}' class="col cards">
-                                    <div class="container card">
-                                        <img src="../static/templates/tempImages/{{temp.templateId}}.jpg" alt="">
-                                        <div class="row desc">{{ temp.description }}</div>
-                                    </div>
-                            </a>
+                        <a href='/template?id={{temp.templateId}}' class="col cards">
+                            <div class="container card">
+                                <img src="../static/templates/tempImages/{{temp.templateId}}.jpg" alt="">
+                                <div class="row desc">{{ temp.description }}</div>
+                            </div>
+                        </a>
                         {% endfor %}
                     </div>
+                    {% endif %}
+
                     <h1 class="headers" style="margin-top: 30px;">Uploads</h1>
+                    {% if uploadTemplates|length == 0 %}
+                        <h2 class="empty-array">You have no Uploads.</h2>
+                    {% else %}
                     <div class="row uploads">
                         {% for temp in uploadTemplates %}
-                            <a href='/template?id={{temp.templateId}}' class="col cards">
-                                    <div class="container card">
-                                        <img src="../static/templates/tempImages/{{temp.templateId}}.jpg" alt="">
-                                        <div class="row desc">{{ temp.description }}</div>
-                                    </div>
-                            </a>
+                        <a href='/template?id={{temp.templateId}}' class="col cards">
+                            <div class="container card">
+                                <img src="../static/templates/tempImages/{{temp.templateId}}.jpg" alt="">
+                                <div class="row desc">{{ temp.description }}</div>
+                            </div>
+                        </a>
                         {% endfor %}
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

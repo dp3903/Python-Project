@@ -277,7 +277,7 @@
     <div class="container">
         <h1 class="header-odd">Get any template you want</h1>
         <div class="row main-rows">
-            {% for item in templates %}
+            {% for item in row1 %}
             <a href='/template?id={{item.templateId}}' class="col cards">
                 {% comment %} <div> {% endcomment %}
                     <div class="container card">
@@ -291,14 +291,17 @@
         </div>
         <h1 class="header-even">Download for free</h1>
         <div class="row main-rows">
-            <div class="col cards"></div>
-            <div class="col cards"></div>
-            <div class="col cards"></div>
-            <div class="col cards"></div>
-            <div class="col cards"></div>
-            <div class="col cards"></div>
-            <div class="col cards"></div>
-            <div class="col cards"></div>
+            {% for item in row2 %}
+            <a href='/template?id={{item.templateId}}' class="col cards">
+                {% comment %} <div> {% endcomment %}
+                    <div class="container card">
+                        <img src="../static/templates/tempImages/{{item.templateId}}.jpg" alt="">
+                        <div class="row desc">{{ item.description }}</div>
+                    </div>
+                    {% comment %}
+                </div> {% endcomment %}
+            </a>
+            {% endfor %}
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

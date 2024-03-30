@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2024 at 11:22 AM
+-- Generation Time: Mar 30, 2024 at 01:04 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -177,7 +177,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (19, 'sessions', '0001_initial', '2024-03-09 18:13:35.103320'),
 (20, 'templateData', '0001_initial', '2024-03-09 18:13:35.248140'),
 (21, 'templateData', '0002_alter_applogs_transaction_type', '2024-03-27 05:59:51.999243'),
-(22, 'templateData', '0003_alter_applogs_tid', '2024-03-27 06:04:42.070184');
+(22, 'templateData', '0003_alter_applogs_tid', '2024-03-27 06:04:42.070184'),
+(23, 'profileApp', '0002_alter_users_profile_img', '2024-03-30 09:43:43.110068'),
+(24, 'templateData', '0004_alter_template_templateid', '2024-03-30 11:43:06.927876');
 
 -- --------------------------------------------------------
 
@@ -196,9 +198,10 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('1eo00xhmf3rt46qqhgjxkeo0cmil51j1', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rpNm3:wRqCWhi3SIIPbtgB6vaw-_clmljt9b4_SAmbjbVkULY', '2024-04-10 07:32:39.996049'),
 ('3kzwiv4lz3z03hblcehjgn9lr4t9fz47', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rkMs9:1N05JhtWb4MXBTEjmkBiMleg80_8Unru7lUU13f9obw', '2024-03-27 11:34:13.288911'),
+('5qddqzqle3yrz3argdrhsaqeywnwjzgc', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rqWcM:YeN4hHaWAM2jpBYmDzhad28IlT4O6ylsA8ZOGFXiYeE', '2024-04-13 11:11:22.963021'),
 ('gpyf78w4xnlotfsxib8yw5sb2ajnoc2s', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rnj4Y:7SDYxcgdsdLhwvW9z_DvlVAWBPhVfTwXMV9QIUcX9JY', '2024-04-05 17:52:54.473255'),
+('ov7cnptlri21cq94mqb6n3j2s9ck5r4x', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rq8PF:2sUT7yE8kvOfKG-0yVO11oEtNvGJ0q4xJPIQev9UVeo', '2024-04-12 09:20:13.765901'),
 ('qyvklnfq22ncxt4zcg5btc56co8sy4x1', '.eJxVjEEOwiAQRe_C2hAKI7Qu3XsGMswMUjU0Ke3KeHdD0oVu_3vvv1XEfStxb7LGmdVFDer0uyWkp9QO-IH1vmha6rbOSXdFH7Tp28Lyuh7u30HBVnptM1KCfA4uWAriHRrJAJjRGUucZRwdeYbBEEoWdjzBFCCIMz5Zrz5fEO44wA:1rj2NB:8wzhNFnb3OLISzT-26dN0S_qXoXvI8cWD7bFyPE2aic', '2024-03-23 19:28:45.980975');
 
 -- --------------------------------------------------------
@@ -219,7 +222,7 @@ CREATE TABLE `profileapp_users` (
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL,
-  `profile_img` varchar(100) NOT NULL
+  `profile_img` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -229,8 +232,9 @@ CREATE TABLE `profileapp_users` (
 INSERT INTO `profileapp_users` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `profile_img`) VALUES
 (1, 'pbkdf2_sha256$600000$GRwYlNLtzSIyZXjr4l3nMF$ngVdDboXS6BfCPrlNeaUlr4eriicaaAWuUmD7X8wcjY=', '2024-03-09 19:28:45.978059', 0, 'Nisarg', '', '', 'patel123@gmail.com', 0, 1, '2024-03-09 18:14:31.702668', 'static/img1.jpg'),
 (2, 'pbkdf2_sha256$600000$oh8I1rOJfqUMChvbxph9PQ$qfIVhugV5Gdz16/qmRSYrlaP1E5d6pifuT71S0AC7Ns=', '2024-03-09 19:18:58.053868', 0, 'Jainish', '', '', 'patel456@gmail.com', 0, 1, '2024-03-09 19:15:14.528987', 'static/img1_vB3vZsk.jpg'),
-(3, 'pbkdf2_sha256$600000$4mwDubvB2AZpfMWVReA1jJ$X3ApeINq1IfCC8fc2e8jLAG5DWpZ6ASPnqxKqd+HQew=', '2024-03-27 07:32:39.991054', 0, 'dhruvp', '', '', 'abd@gmail.com', 0, 1, '2024-03-11 12:49:38.938589', 'static/wallpaperflare.com_wallpaper_1.jpg'),
-(5, 'pbkdf2_sha256$600000$S3gYOMWxzverPFbKYD5DpX$rcUyvHMd1JQ8vDDGcPMdMNrMkfrHMRA8lpybsQUrNuM=', '2024-03-27 06:30:56.851046', 0, 'test123', '', '', 'test@123.com', 0, 1, '2024-03-27 06:30:55.362160', 'static/1013376_uZc3ofF.jpg');
+(3, 'pbkdf2_sha256$600000$4mwDubvB2AZpfMWVReA1jJ$X3ApeINq1IfCC8fc2e8jLAG5DWpZ6ASPnqxKqd+HQew=', '2024-03-30 11:11:22.956962', 0, 'dhruvp', '', '', 'abd@gmail.com', 0, 1, '2024-03-11 12:49:38.938589', 'static/wallpaperflare.com_wallpaper_1.jpg'),
+(5, 'pbkdf2_sha256$600000$S3gYOMWxzverPFbKYD5DpX$rcUyvHMd1JQ8vDDGcPMdMNrMkfrHMRA8lpybsQUrNuM=', '2024-03-27 06:30:56.851046', 0, 'test123', '', '', 'test@123.com', 0, 1, '2024-03-27 06:30:55.362160', 'static/1013376_uZc3ofF.jpg'),
+(6, 'pbkdf2_sha256$600000$vUc9gDAeimcfWKSMyAGq8v$T2FoRl8WgLtWHAZroSTcETQevidcpqyMSheDrzM99y4=', '2024-03-30 09:58:10.211094', 0, 'testuser', '', '', 'abc@gmail.com', 0, 1, '2024-03-30 09:58:09.832975', '');
 
 -- --------------------------------------------------------
 
@@ -265,7 +269,7 @@ CREATE TABLE `profileapp_users_user_permissions` (
 CREATE TABLE `templatedata_applogs` (
   `id` bigint(20) NOT NULL,
   `transaction_type` varchar(10) NOT NULL,
-  `TID_id` varchar(10) DEFAULT NULL,
+  `TID_id` varchar(30) DEFAULT NULL,
   `UID_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -276,7 +280,8 @@ CREATE TABLE `templatedata_applogs` (
 INSERT INTO `templatedata_applogs` (`id`, `transaction_type`, `TID_id`, `UID_id`) VALUES
 (2, 'update', NULL, 3),
 (6, 'new', NULL, 5),
-(12, 'download', '3_temp1', 3);
+(13, 'new', NULL, 6),
+(21, 'download', '2_Yet Another Template', 3);
 
 -- --------------------------------------------------------
 
@@ -299,14 +304,23 @@ CREATE TABLE `templatedata_template` (
 --
 
 INSERT INTO `templatedata_template` (`templateId`, `templateName`, `description`, `date`, `templateZip`, `totaldownloads`, `UID_id`) VALUES
+('1_Another Template', 'Another Template', 'This is the description for Another Template', '2024-03-25', 'static/templates/tempFiles/1_Another Template', 0, 1),
+('1_Random Template 1', 'Random Template 1', 'This is the description for Random Template 1', '2024-03-30', 'static/templates/tempFiles/1_Random Template 1', 2, 1),
 ('2_card', 'card', 'this is html card.', '2024-03-09', 'static/templates/tempFiles/2_card', 0, 2),
 ('2_my temp', 'my temp', 'some random desc', '2024-03-09', 'static/templates/tempFiles/2_my temp', 0, 2),
+('2_Random Template 2', 'Random Template 2', 'This is the description for Random Template 2', '2024-03-29', 'static/templates/tempFiles/2_Random Template 2', 0, 2),
 ('2_signUp', 'signUp', 'this is signUp template.', '2024-03-09', 'static/templates/tempFiles/2_signUp', 0, 2),
 ('2_temp1', 'temp1', 'some random desc', '2024-03-09', 'static/templates/tempFiles/2_temp1', 0, 2),
 ('2_temp2', 'temp2', 'some random desc', '2024-03-09', 'static/templates/tempFiles/2_temp2', 0, 2),
-('2_temp3', 'temp3', 'some random desc', '2024-03-09', 'static/templates/tempFiles/2_temp3', 0, 2),
-('3_temp1', 'temp1', 'some random desc', '2024-03-09', 'static/templates/tempFiles/3_temp1', 1, 3),
-('3_temp2', 'temp2', 'some random desc', '2024-03-09', 'static/templates/tempFiles/3_temp2', 0, 3);
+('2_Yet Another Template', 'Yet Another Template', 'This is the description for Yet Another Template', '2024-03-24', 'static/templates/tempFiles/2_Yet Another Template', 2, 2),
+('3_dhruv\'s template', 'dhruv\'s template', 'some description of dhruv\'s template.', '2024-03-30', 'static/templates/tempFiles/3_dhruv\'s template', 0, 3),
+('3_One More Template', 'One More Template', 'This is the description for One More Template', '2024-03-23', 'static/templates/tempFiles/3_One More Template', 0, 3),
+('3_Random Template 3', 'Random Template 3', 'This is the description for Random Template 3', '2024-03-28', 'static/templates/tempFiles/3_Random Template 3', 0, 3),
+('3_temp2', 'temp2', 'some random desc', '2024-03-09', 'static/templates/tempFiles/3_temp2', 0, 3),
+('5_Exciting Template', 'Exciting Template', 'This is the description for Exciting Template', '2024-03-22', 'static/templates/tempFiles/5_Exciting Template', 0, 5),
+('5_Random Template 4', 'Random Template 4', 'This is the description for Random Template 4', '2024-03-27', 'static/templates/tempFiles/5_Random Template 4', 0, 5),
+('6_Random Template 5', 'Random Template 5', 'This is the description for Random Template 5', '2024-03-26', 'static/templates/tempFiles/6_Random Template 5', 0, 6),
+('6_Unique Template', 'Unique Template', 'This is the description for Unique Template', '2024-03-21', 'static/templates/tempFiles/6_Unique Template', 0, 6);
 
 --
 -- Indexes for dumped tables
@@ -438,13 +452,13 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `profileapp_users`
 --
 ALTER TABLE `profileapp_users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `profileapp_users_groups`
@@ -462,7 +476,7 @@ ALTER TABLE `profileapp_users_user_permissions`
 -- AUTO_INCREMENT for table `templatedata_applogs`
 --
 ALTER TABLE `templatedata_applogs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
@@ -506,7 +520,7 @@ ALTER TABLE `profileapp_users_user_permissions`
 -- Constraints for table `templatedata_applogs`
 --
 ALTER TABLE `templatedata_applogs`
-  ADD CONSTRAINT `templateData_applogs_TID_id_1bead615_fk_templateD` FOREIGN KEY (`TID_id`) REFERENCES `templatedata_template` (`templateId`),
+  ADD CONSTRAINT `templateData_applogs_TID_id_1bead615_fk` FOREIGN KEY (`TID_id`) REFERENCES `templatedata_template` (`templateId`),
   ADD CONSTRAINT `templateData_applogs_UID_id_086a186f_fk_profileApp_users_id` FOREIGN KEY (`UID_id`) REFERENCES `profileapp_users` (`id`);
 
 --
