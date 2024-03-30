@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2024 at 02:09 PM
+-- Generation Time: Mar 27, 2024 at 11:22 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -175,7 +175,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (17, 'admin', '0002_logentry_remove_auto_add', '2024-03-09 18:13:35.074856'),
 (18, 'admin', '0003_logentry_add_action_flag_choices', '2024-03-09 18:13:35.080237'),
 (19, 'sessions', '0001_initial', '2024-03-09 18:13:35.103320'),
-(20, 'templateData', '0001_initial', '2024-03-09 18:13:35.248140');
+(20, 'templateData', '0001_initial', '2024-03-09 18:13:35.248140'),
+(21, 'templateData', '0002_alter_applogs_transaction_type', '2024-03-27 05:59:51.999243'),
+(22, 'templateData', '0003_alter_applogs_tid', '2024-03-27 06:04:42.070184');
 
 -- --------------------------------------------------------
 
@@ -194,6 +196,9 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('1eo00xhmf3rt46qqhgjxkeo0cmil51j1', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rpNm3:wRqCWhi3SIIPbtgB6vaw-_clmljt9b4_SAmbjbVkULY', '2024-04-10 07:32:39.996049'),
+('3kzwiv4lz3z03hblcehjgn9lr4t9fz47', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rkMs9:1N05JhtWb4MXBTEjmkBiMleg80_8Unru7lUU13f9obw', '2024-03-27 11:34:13.288911'),
+('gpyf78w4xnlotfsxib8yw5sb2ajnoc2s', '.eJxVjDsOwyAQRO9CHSHAC4aU6X0Ga2GX4CQCyZ8qyt1jSy4STTfvzbzFiNtaxm3heZxIXEUnLr9dxPTkegB6YL03mVpd5ynKQ5EnXeTQiF-30_07KLiUfW0zQVa9AwvoHWelOh0NKKet5mCYgzYUiEJIkIGAkvG4hzyC7rMXny_SMDe1:1rnj4Y:7SDYxcgdsdLhwvW9z_DvlVAWBPhVfTwXMV9QIUcX9JY', '2024-04-05 17:52:54.473255'),
 ('qyvklnfq22ncxt4zcg5btc56co8sy4x1', '.eJxVjEEOwiAQRe_C2hAKI7Qu3XsGMswMUjU0Ke3KeHdD0oVu_3vvv1XEfStxb7LGmdVFDer0uyWkp9QO-IH1vmha6rbOSXdFH7Tp28Lyuh7u30HBVnptM1KCfA4uWAriHRrJAJjRGUucZRwdeYbBEEoWdjzBFCCIMz5Zrz5fEO44wA:1rj2NB:8wzhNFnb3OLISzT-26dN0S_qXoXvI8cWD7bFyPE2aic', '2024-03-23 19:28:45.980975');
 
 -- --------------------------------------------------------
@@ -224,7 +229,8 @@ CREATE TABLE `profileapp_users` (
 INSERT INTO `profileapp_users` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `profile_img`) VALUES
 (1, 'pbkdf2_sha256$600000$GRwYlNLtzSIyZXjr4l3nMF$ngVdDboXS6BfCPrlNeaUlr4eriicaaAWuUmD7X8wcjY=', '2024-03-09 19:28:45.978059', 0, 'Nisarg', '', '', 'patel123@gmail.com', 0, 1, '2024-03-09 18:14:31.702668', 'static/img1.jpg'),
 (2, 'pbkdf2_sha256$600000$oh8I1rOJfqUMChvbxph9PQ$qfIVhugV5Gdz16/qmRSYrlaP1E5d6pifuT71S0AC7Ns=', '2024-03-09 19:18:58.053868', 0, 'Jainish', '', '', 'patel456@gmail.com', 0, 1, '2024-03-09 19:15:14.528987', 'static/img1_vB3vZsk.jpg'),
-(3, 'pbkdf2_sha256$600000$4mwDubvB2AZpfMWVReA1jJ$X3ApeINq1IfCC8fc2e8jLAG5DWpZ6ASPnqxKqd+HQew=', '2024-03-11 12:49:39.540974', 0, 'dhruv', '', '', 'abc@gmail.com', 0, 1, '2024-03-11 12:49:38.938589', 'static/wallpaperflare.com_wallpaper_1.jpg');
+(3, 'pbkdf2_sha256$600000$4mwDubvB2AZpfMWVReA1jJ$X3ApeINq1IfCC8fc2e8jLAG5DWpZ6ASPnqxKqd+HQew=', '2024-03-27 07:32:39.991054', 0, 'dhruvp', '', '', 'abd@gmail.com', 0, 1, '2024-03-11 12:49:38.938589', 'static/wallpaperflare.com_wallpaper_1.jpg'),
+(5, 'pbkdf2_sha256$600000$S3gYOMWxzverPFbKYD5DpX$rcUyvHMd1JQ8vDDGcPMdMNrMkfrHMRA8lpybsQUrNuM=', '2024-03-27 06:30:56.851046', 0, 'test123', '', '', 'test@123.com', 0, 1, '2024-03-27 06:30:55.362160', 'static/1013376_uZc3ofF.jpg');
 
 -- --------------------------------------------------------
 
@@ -259,9 +265,18 @@ CREATE TABLE `profileapp_users_user_permissions` (
 CREATE TABLE `templatedata_applogs` (
   `id` bigint(20) NOT NULL,
   `transaction_type` varchar(10) NOT NULL,
-  `TID_id` varchar(10) NOT NULL,
+  `TID_id` varchar(10) DEFAULT NULL,
   `UID_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `templatedata_applogs`
+--
+
+INSERT INTO `templatedata_applogs` (`id`, `transaction_type`, `TID_id`, `UID_id`) VALUES
+(2, 'update', NULL, 3),
+(6, 'new', NULL, 5),
+(12, 'download', '3_temp1', 3);
 
 -- --------------------------------------------------------
 
@@ -270,7 +285,7 @@ CREATE TABLE `templatedata_applogs` (
 --
 
 CREATE TABLE `templatedata_template` (
-  `templateId` varchar(10) NOT NULL,
+  `templateId` varchar(30) NOT NULL,
   `templateName` varchar(20) NOT NULL,
   `description` longtext NOT NULL,
   `date` date NOT NULL,
@@ -290,7 +305,7 @@ INSERT INTO `templatedata_template` (`templateId`, `templateName`, `description`
 ('2_temp1', 'temp1', 'some random desc', '2024-03-09', 'static/templates/tempFiles/2_temp1', 0, 2),
 ('2_temp2', 'temp2', 'some random desc', '2024-03-09', 'static/templates/tempFiles/2_temp2', 0, 2),
 ('2_temp3', 'temp3', 'some random desc', '2024-03-09', 'static/templates/tempFiles/2_temp3', 0, 2),
-('3_temp1', 'temp1', 'some random desc', '2024-03-09', 'static/templates/tempFiles/3_temp1', 0, 3),
+('3_temp1', 'temp1', 'some random desc', '2024-03-09', 'static/templates/tempFiles/3_temp1', 1, 3),
 ('3_temp2', 'temp2', 'some random desc', '2024-03-09', 'static/templates/tempFiles/3_temp2', 0, 3);
 
 --
@@ -423,13 +438,13 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `profileapp_users`
 --
 ALTER TABLE `profileapp_users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `profileapp_users_groups`
@@ -447,7 +462,7 @@ ALTER TABLE `profileapp_users_user_permissions`
 -- AUTO_INCREMENT for table `templatedata_applogs`
 --
 ALTER TABLE `templatedata_applogs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
