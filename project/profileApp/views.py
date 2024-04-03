@@ -11,8 +11,8 @@ import math
 
 def signUp(request):
     if request.method == 'POST':
-        print(request.POST)
-        print(request.FILES)
+        # print(request.POST)
+        # print(request.FILES)
         form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -122,7 +122,7 @@ def profile(request):
                     'uploadTemplates' : uploadTemplates,
                     'downloadTemplates' : downloadTemplates
                 }
-            print(context)
+            # print(context)
             return render(request, 'profile.html', context)
         else:
             return redirect('signIn')
@@ -163,9 +163,9 @@ def upload(request):
                 newlog.transaction_type = "upload"
                 newlog.TID = Template.objects.filter(templateId = temp.templateId)[0]
                 newlog.UID = Users.objects.filter(id = request.user.id)[0]
-                print(newlog.transaction_type)
-                print(newlog.TID)
-                print(newlog.UID)
+                # print(newlog.transaction_type)
+                # print(newlog.TID)
+                # print(newlog.UID)
                 newlog.save()
             except FileExistsError :
                 return HttpResponse('<h1>Template name already exists. Please try again with a different name.<h1>')
@@ -176,7 +176,7 @@ def upload(request):
                 if os.path.isfile(filepath + name +'.zip'):
                     os.remove(filepath + name +'.zip')
                 return HttpResponse('<h1>Some error has occured. Please try again.</h1>')            
-            print(temp)
+            # print(temp)
             return HttpResponse('<h1>Successfully uploaded template...</h1>')
 
         else:
@@ -189,7 +189,7 @@ def template(request):
     if request.user.is_authenticated:
 
         tid = request.GET.get('id','')
-        print(tid)
+        # print(tid)
         uid = tid.split('_')[0]
         # print(uid)
         uploader = Users.objects.filter(id = uid).values_list('username')[0][0]
@@ -237,48 +237,39 @@ def UpdateUserView(request):
 
 # Delete user profile
 def DeleteUserProfile(request):
-    templateData = Template.objects.filter(UID_id=request.user.id)
+    if request.user.is_authenticated:
+        templateData = Template.objects.filter(UID_id=request.user.id)
 
-    if templateData:
-        for row in templateData:
-            imgpath = Path(f'static/templates/tempImages/{row.templateId}.jpg')
-            filepath = Path(f'static/templates/tempFiles/{row.templateId}.zip')
-            
-            # to delete files
-            if imgpath.exists():
-                imgpath.unlink()
-            if filepath.exists():
-                filepath.unlink()
-            
-            # to delete rows from the database
-            row.delete()
+        if templateData:
+            for row in templateData:
+                imgpath = Path(f'static/templates/tempImages/{row.templateId}.jpg')
+                filepath = Path(f'static/templates/tempFiles/{row.templateId}.zip')
+                
+                # to delete files
+                if imgpath.exists():
+                    imgpath.unlink()
+                if filepath.exists():
+                    filepath.unlink()
+                
+                # to delete rows from the database
+                row.delete()
 
-    request.user.profile_img.delete(save=True)
-    request.user.delete()
-    return redirect('signUp')
+        request.user.profile_img.delete(save=True)
+        request.user.delete()
+        return redirect('signUp')
 
-# def  searchTemplate(request):
-#     query = request.GET.get('q', '')
-#     templates = Template.objects.all()
+    # user not authenticated
+    return redirect('signIn')
 
-#     if query:
-#         # Use Q objects to perform a case-insensitive search on the description field
-#         templates = templates.filter(Q(description__icontains=query))
-    
-#     context = {'templates': templates, 'query': query}
-#     return render(request, 'searchResult.html', context)   
-
-# from django.shortcuts import render
-# from .models import Template
-
+# search template
 def searchTemplate(request):
     if request.user.is_authenticated:
         query = request.POST['query']
-        print(query)
+        # print(query)
 
         if query:
             templates = Template.objects.filter(description__icontains=query)
-            print(templates)
+            # print(templates)
             profileImg = Users.objects.filter(username=request.user.username).values_list('profile_img')
             context = {}
             if profileImg and profileImg[0][0] == '':
@@ -300,6 +291,7 @@ def searchTemplate(request):
     # User not authenticated, redirect to sign-in page
     return redirect('signIn')
 
+# download template
 def download(request):
     if request.user.is_authenticated:
         tid = request.GET.get('Tid','')
@@ -315,8 +307,8 @@ def download(request):
                 newlog.transaction_type = "download"
                 newlog.TID = Template.objects.filter(templateId = tid)[0]
                 newlog.UID = Users.objects.filter(id = request.user.id)[0]
-                print(newlog.UID)
-                print(newlog.TID)
+                # print(newlog.UID)
+                # print(newlog.TID)
                 newlog.save()
                 return response
         raise Http404
@@ -324,6 +316,7 @@ def download(request):
     else:
         return redirect('signIn')
 
+# delete template
 def delete(request):
     if request.user.is_authenticated:
         tid = request.GET["tid"]
